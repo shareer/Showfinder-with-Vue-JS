@@ -36,13 +36,10 @@ export default {
     },
     methods: {
         showDetailsPage(id) {
-            alert("under developement");
-            // method to navigate to show details page
+            console.log('show details');
+            this.$router.push({ name: 'ShowDetails', query: { id } });
         }
-    },
-    // mounted() {
-    //     console.log(this.tvShowsList, 'tvShowsList');
-    // }
+    }
 };
 </script>
   
@@ -70,16 +67,17 @@ export default {
 }
 
 .show-image {
-    max-width: 210px;
+    max-width: 205px;
     max-height: 300px;
     width: auto;
     height: auto;
     transition: transform 0.3s ease-in-out;
+    border-radius: 5px;
 }
 
 .show-item-card:hover {
     transform: scale(1.1);
-    /* Increase the size on hover */
+    border-radius: 5px;
 }
 
 .card-content {
@@ -91,12 +89,14 @@ export default {
     transition: height 0.3s ease-in-out;
     height: 0;
     overflow: hidden;
-    padding: 20px !important
+    padding: 20px !important;
+    border-radius: 5px;
 }
 
 .show-item-card:hover .card-content {
-    height: 100%;
+    height: 96%;
     background: linear-gradient(rgba(255, 77, 77, 0.72), #111);
+    width: 100%;
 }
 
 .genere-name h1 {
