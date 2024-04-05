@@ -1,16 +1,15 @@
 <template>
+  <Header />
   <router-view />
 </template>
 
 <script lang="ts">
-// import Home from './components/Home.vue'
-// import ShowDetails from './components/ShowDetails.vue'
+import Header from './components/Header.vue'
 
 export default {
-  // components: {
-  //   Home,
-  //   ShowDetails
-  // }
+  components: {
+    Header,
+  }
 };
 </script>
 
@@ -24,11 +23,7 @@ body {
 }
 
 #app {
-  background: #111;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; 
-  height: 100%;  */
+  background-color: #111;
 }
 
 

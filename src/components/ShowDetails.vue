@@ -1,121 +1,131 @@
 <template>
     <div class="container p-5 mt-5">
+        <div class="back-btn mb-5" @click="navigateHome"><i class="fa fa-arrow-left"></i><span>Back</span></div>
         <div class="row">
             <div class="col-md-2">
                 <div class="genre">
                     <h4>GENRE</h4>
                     <ul>
-                        <li>Comedy</li>
-                        <li>Crime</li>
-                        <li>Drama</li>
+                        <li v-for="genre in showDetails?.genres" :key="genre">{{ genre }}</li>
                     </ul>
                 </div>
                 <div class="director">
-                    <h4>DIRECTOR</h4>
+                    <h4>LANGUAGE</h4>
                     <ul>
-                        <li>Lorene Scaferia</li>
-                    </ul>
-                </div>
-                <div class="producer">
-                    <h4>PRODUCER</h4>
-                    <ul>
-                        <li>Lorene Scaferia</li>
-                        <li>Mat Thomas</li>
-                        <li>Jennifer Lopez</li>
+                        <li>{{ showDetails?.language }}</li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-6 description">
-                <h1>True Destrcuctive</h1>
-                <!-- Duration is runtime -->
-                <div class="showTime mb-3">Duration : 60 minutes</div>
-                <div class="show-rating">
+                <h1>{{ showDetails?.name }}</h1>
+                <div v-if="showDetails?.runtime" class="showTime mb-3">Duration : {{ showDetails.runtime }} minutes</div>
+                <div v-if="showDetails?.rating.average" class="show-rating">
                     <i class="fa fa-star rating"></i>
-                    <span class="rating-number">7.6</span>
+                    <span class="rating-number">{{ showDetails.rating.average }}</span>
                 </div>
-                <p>Under the Dome is the story of a small town that is suddenly and inexplicably sealed off from the rest of
-                    the
-                    world by an enormous transparent dome. The town's inhabitants must deal with surviving the
-                    post-apocalyptic
-                    conditions while searching for answers about the dome, where it came from and if and when it will go
-                    away.
-                </p>
-                <!-- url is link to read more -->
-                <p><a href="#" class="read-more">Read More</a></p>
+                <p v-html="showDetails?.summary"></p>
+                <p v-if="showDetails?.url"><a :href="showDetails?.url" target="_blank" class="read-more">Read More</a></p>
             </div>
-            <div class="col-md-3 show-image">
-                <img src="https://static.tvmaze.com/uploads/images/original_untouched/81/202627.jpg" alt="" />
+            <div v-if="showDetails?.image" class="col-md-3 show-image">
+                <img :src="showDetails?.image?.original" alt="" />
             </div>
         </div>
     </div>
 </template>
-<script>
 
-export default {
+<script setup>
+import { useRoute, useRouter } from 'vue-router';
+import { useShowStore } from '@/stores/ShowStore';
 
-    setup() {
+// Get the route and router instances
+const route = useRoute();
+const router = useRouter();
 
-    },
-}
+// Get the ID parameter from the route
+const id = Number(route.query.id);
+
+// Get access to the show store
+const showStore = useShowStore();
+
+// Fetch the details of the clicked show based on its ID
+const showDetails = showStore.getShowsData.find(show => show.id === id);
+
+
+// Function to navigate back to the home page
+const navigateHome = () => {
+    router.push({ name: 'Home' });
+};
 </script>
 
 <style scoped>
-    .container {
-        color: #fff;
-    }
+.container {
+    color: #fff;
+}
 
-    h4, h1 {
-        font-weight: bold;
-        padding-bottom: 10px;
-    }
+h4,
+h1 {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
 
-    ul {
-        padding-left: 10px;
-    }
+ul {
+    padding-left: 10px;
+}
 
-    li {
-        list-style-type: none;
-    }
+li {
+    list-style-type: none;
+}
 
-    p {
-        color: #fff;
-    }
+p {
+    color: #fff;
+}
 
-    .show-image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.show-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    .show-image img {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 10px
-    }
+.show-image img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px
+}
 
-    .show-rating {
-        color: #FAB006;
-        margin-bottom: 10px;
-    }
+.show-rating {
+    color: #FAB006;
+    margin-bottom: 10px;
+}
 
-    .rating-number {
-        margin-right: 10px;
-        font-weight: bold;
-        margin-left: 5px;
-    }
+.rating-number {
+    margin-right: 10px;
+    font-weight: bold;
+    margin-left: 5px;
+}
 
-    .showTime {
-        color: #fff;
-    }
+.showTime {
+    color: #fff;
+}
 
-    .read-more{
-        text-decoration: none;
-        font-size: 12px;
-        font-weight: bold;
-        background: none;
-        color: #FAB006;
-    }
-    .read-more:hover{
-        color: rgba(255, 77, 77, 0.72);
-    }
+.read-more {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    background: none;
+    color: #FAB006;
+}
+
+.read-more:hover {
+    color: rgba(255, 77, 77, 0.72);
+}
+
+.back-btn {
+    color: #FAB006;
+}
+
+.back-btn span {
+    color: #FAB006;
+    margin-left: 10px;
+    cursor: pointer;
+}
 </style>

@@ -1,11 +1,11 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-
+import axios, { AxiosError,  } from "axios";
+import type { AxiosRequestConfig,AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const customAxios = axios.create({
   baseURL: `https://api.tvmaze.com`,
 });
 
-const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
+const onRequest = (config: InternalAxiosRequestConfig<any>)=> { //TODO
   return config;
 };
 

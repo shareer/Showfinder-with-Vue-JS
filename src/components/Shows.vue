@@ -1,23 +1,25 @@
 <template>
     <div class="genere-name">
-        <h1>{{ genereName }}</h1>
+        <h3>{{ genereName }}</h3>
     </div>
     <div class="card-container mb-5">
-        <div class="card mb-4 text-white bg-dark show-item-card" v-for="show in tvShowsList" :key="show.id"
-            @click="showDetailsPage(show.id)">
-            <img class="card-img-top show-image" :src="show?.image?.medium" :alt="show.name" />
-            <div class="card-body card-content px-5 py-4">
-                <h5 class="card-title">{{ show.name }}</h5>
-                <p class="summary" v-html="show.summary"></p>
-                <div class="show-details">
-                    <section class="show-details-values">
-                        <div v-if="show.rating.average" class="favourite-section">
-                            <i class="fa fa-star rating"></i>
-                            <span class="rating-number">{{ show.rating.average }}</span>
-                            <span class="genere-list">{{ show?.genereList?.join(" | ") }}</span>
-                            <span class="genere-list">Action | Drama | Sports | Sci-fi</span>
+        <div v-for="(show, index) in tvShowsList" :key="index">
+            <div v-if="show?.genres?.indexOf(genereName) > -1">
+                <div class="card mb-4 text-white bg-dark show-item-card" :key="show.id" @click="showDetailsPage(show.id)">
+                    <img class="card-img-top show-image" :src="show?.image?.medium" :alt="show.name" />
+                    <div class="card-body card-content px-5 py-4">
+                        <h5 class="card-title">{{ show.name }}</h5>
+                        <p class="summary" v-html="show.summary"></p>
+                        <div class="show-details">
+                            <section class="show-details-values">
+                                <div v-if="show.rating.average" class="favourite-section">
+                                    <i class="fa fa-star rating"></i>
+                                    <span class="rating-number">{{ show.rating.average }}</span>
+                                    <span class="genere-list">{{ show.genres?.join(" | ") }}</span>
+                                </div>
+                            </section>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,16 +29,8 @@
 <script>
 export default {
     props: ['genereName', 'tvShowsList'], // Props declaration
-    computed: {
-        filteredShows() {
-            return this.tvShowsList.filter(show =>
-                show?.genereList?.includes(this.genereName)
-            );
-        }
-    },
     methods: {
         showDetailsPage(id) {
-            console.log('show details');
             this.$router.push({ name: 'ShowDetails', query: { id } });
         }
     }
@@ -99,7 +93,7 @@ export default {
     width: 100%;
 }
 
-.genere-name h1 {
+.genere-name h3 {
     color: aliceblue;
 }
 
@@ -131,6 +125,7 @@ export default {
 .rating-number {
     margin-right: 10px;
     font-weight: bold;
+    color: #FAB006;
 }
 
 .genere-list {
@@ -138,7 +133,7 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 40px;
-    text-wrap: nowrap;
+    white-space: nowrap; 
     display: inline-block;
     max-width: 120px;
     font-weight: bold;
@@ -151,5 +146,6 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
-}</style>
+}
+</style>
   
