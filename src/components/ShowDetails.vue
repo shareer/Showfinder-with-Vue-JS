@@ -1,6 +1,6 @@
 <template>
     <div class="container p-5 mt-5">
-        <div class="back-btn mb-5" @click="navigateHome"><i class="fa fa-arrow-left"></i><span>Back</span></div>
+        <div class="back-btn mb-5" @click="navigateHome"><img src="../assets/left-arrow.png" alt="back-arrow" class="left-arrow"/><span>Back</span></div>
         <div class="row">
             <div class="col-md-2">
                 <div class="genre">
@@ -20,7 +20,7 @@
                 <h1>{{ showDetails?.name }}</h1>
                 <div v-if="showDetails?.runtime" class="showTime mb-3">Duration : {{ showDetails.runtime }} minutes</div>
                 <div v-if="showDetails?.rating.average" class="show-rating">
-                    <i class="fa fa-star rating"></i>
+                    <img src="../assets/rating.png" alt="rating-icon" class="rating-icon"/>
                     <span class="rating-number">{{ showDetails.rating.average }}</span>
                 </div>
                 <p v-html="showDetails?.summary"></p>
@@ -115,6 +115,14 @@ p {
     color: #FAB006;
 }
 
+.rating-icon{
+    width:15px;
+    height: 15px;
+    cursor: pointer;
+    margin-top: -5px;
+    margin-right: 5px;
+}
+
 .read-more:hover {
     color: rgba(255, 77, 77, 0.72);
 }
@@ -126,6 +134,12 @@ p {
 .back-btn span {
     color: #FAB006;
     margin-left: 10px;
+    cursor: pointer;
+}
+
+.left-arrow{
+    width:20px;
+    height: 20px;
     cursor: pointer;
 }
 </style>

@@ -2,7 +2,7 @@
     <div class="genere-name">
         <h3>{{ genereName }}</h3>
     </div>
-    <div class="card-container mb-5">
+    <div class="card-container mb-4">
         <div v-for="(show, index) in tvShowsList" :key="index">
             <div v-if="show?.genres?.indexOf(genereName) > -1">
                 <div class="card mb-4 text-white bg-dark show-item-card" :key="show.id" @click="showDetailsPage(show.id)">
@@ -13,7 +13,7 @@
                         <div class="show-details">
                             <section class="show-details-values">
                                 <div v-if="show.rating.average" class="favourite-section">
-                                    <i class="fa fa-star rating"></i>
+                                    <img src="../assets/rating.png" alt="rating-icon" class="rating-icon"/>
                                     <span class="rating-number">{{ show.rating.average }}</span>
                                     <span class="genere-list">{{ show.genres?.join(" | ") }}</span>
                                 </div>
@@ -42,7 +42,6 @@ export default {
     display: flex;
     align-items: center;
     text-align: center;
-    /* max-width: 1600px; */
     widows: 100%;
     overflow: hidden;
     overflow-x: scroll;
@@ -77,7 +76,7 @@ export default {
 .card-content {
     position: absolute;
     bottom: 0;
-    background: rgba(255, 77, 77, 0.72);
+    background: linear-gradient(#111, rgba(255, 77, 77, 0.72));
     color: #fff;
     width: 100%;
     transition: height 0.3s ease-in-out;
@@ -89,7 +88,7 @@ export default {
 
 .show-item-card:hover .card-content {
     height: 96%;
-    background: linear-gradient(rgba(255, 77, 77, 0.72), #111);
+    background: linear-gradient(#111, rgba(255, 77, 77, 0.72));
     width: 100%;
 }
 
@@ -127,7 +126,13 @@ export default {
     font-weight: bold;
     color: #FAB006;
 }
-
+.rating-icon{
+    width:15px;
+    height: 15px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 5px;
+}
 .genere-list {
     font-size: 10px;
     overflow: hidden;
@@ -147,5 +152,6 @@ export default {
     text-overflow: ellipsis;
     display: inline-block;
 }
+
 </style>
   

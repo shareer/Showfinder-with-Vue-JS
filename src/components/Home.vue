@@ -17,7 +17,6 @@
         </div>
         <div v-if="isLoading" class="text-center text-danger">
             <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
             </div>
             <div class="row mb-4">
                 <strong>Getting Shows Ready...</strong>
@@ -116,4 +115,12 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.show-item-container{
+    max-width: 1800px;
+    width: 100%;
+    margin: 0 auto;
+}
+</style>
   
