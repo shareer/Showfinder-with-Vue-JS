@@ -30,8 +30,7 @@ export const useShowStore = defineStore('show', {
       } finally {
         this.loading = false;
       }
-    },
-    
+    }  
   }
 })
 

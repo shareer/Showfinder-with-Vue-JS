@@ -1,10 +1,11 @@
 <template>
     <div class="container-fluid p-4">
-        <div class="container col-6" v-if="!isLoading">
-            <div class="form-group has-search mb-5 p-2 mt-5">
+        <div class="container col-6">
+            <div class="form-group has-search mb-5 p-2 mt-5" v-show="!isLoading">
                 <input type="text" class="form-control" placeholder="Search Shows..." v-model="searchQuery">
             </div>
         </div>
+
         <div class="show-item-container">
             <template v-for="(genereName, index) in genereList" :key="index">
                 <section v-if="hasFilteredShows(genereName)" class="list" data-testid="list-section">
@@ -117,7 +118,7 @@ export default {
 </script>
 
 <style scoped>
-.show-item-container{
+.show-item-container {
     max-width: 1800px;
     width: 100%;
     margin: 0 auto;
