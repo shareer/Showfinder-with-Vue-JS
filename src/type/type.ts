@@ -5,8 +5,5 @@ export interface TVShow {
     runtime: number;
     genres: string[];
     id: number;
-    officialSite: string;
-    status: string;
-    schedule: { time: string; days: string[] };
     rating: { average: number;};
   }
