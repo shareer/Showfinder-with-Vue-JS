@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-md-6 description">
-                <h1>{{ showDetails?.name }}</h1>
+                <h1 class="title">{{ showDetails?.name }}</h1>
                 <div v-if="showDetails?.runtime" class="showTime mb-3">Duration : {{ showDetails.runtime }} minutes</div>
                 <div v-if="showDetails?.rating.average" class="show-rating">
                     <img src="../assets/rating.png" alt="rating-icon" class="rating-icon"/>
@@ -42,7 +42,7 @@ const route = useRoute();
 const router = useRouter();
 
 // Get the ID parameter from the route
-const id = Number(route.query.id);
+const id = Number(route?.query?.id);
 
 // Get access to the show store
 const showStore = useShowStore();

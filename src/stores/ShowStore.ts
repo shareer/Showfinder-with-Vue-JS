@@ -1,9 +1,9 @@
 import { defineStore } from "pinia"
 import { listallTvShows } from '../services/api';
-import type { TVShowDetailValues } from "@/type/type";
+import type { TVShow } from "@/type/type";
 
 export interface ShowState {
-  showsData: TVShowDetailValues[];
+  showsData: TVShow[];
   loading:boolean;
 }
 

@@ -30,9 +30,8 @@
 import { ref, onMounted, watch } from 'vue';
 import _ from 'lodash';
 import Shows from './Shows.vue';
-import type { TVShow } from './type/type';
 import { useShowStore } from '@/stores/ShowStore';
-
+import type { TVShow } from '@/type/type';
 export default {
     components: {
         Shows
