@@ -10,16 +10,13 @@
   .bg-cover {
     background-size: cover !important;
   }
-  
   body {
     min-height: 100vh;
   }
-  
   .header-container {
     position: relative;
     background: url('../assets/bg.jpeg');
   }
-  
   .header-container::after {
     content: "";
     position: absolute; 

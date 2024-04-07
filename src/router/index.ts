@@ -15,25 +15,6 @@ const routes = [
   },
 ];
 
-// const routes = [
-//   {
-//     path: "/",
-//     name: "Home",
-//     component: () => import("../components/Home.vue"),
-//     meta: {
-//       prefetch: true,
-//     },
-//   },
-//   {
-//     path: "/details",
-//     name: "ShowDetails",
-//     component: () => import("../components/ShowDetails.vue"),
-//     meta: {
-//       prefetch: true,
-//     },
-//   },
-// ];
-
 const router = createRouter({
   history: createWebHistory(),
   routes,

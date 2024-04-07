@@ -7,21 +7,16 @@ describe('Home', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
   })
-
-
   it('renders correctly with loading state', async () => {
     const wrapper = mount(Home);
     expect(wrapper.find('.spinner-border').exists()).toBe(true);
     expect(wrapper.find('.container').exists()).toBe(true);
   });
-  
+
   it('renders search input when not loading', async () => {
     const wrapper = mount(Home);
 
-    // Wait for the component to finish rendering
     await wrapper.vm.$nextTick();
-
-    // Check if the search input element exists
     const searchInput = wrapper.find('.form-control');
     expect(searchInput.exists()).toBe(true);
   });
@@ -35,7 +30,6 @@ describe('Home', () => {
     await searchInput.setValue('Test Show');
     await wrapper.vm.$nextTick();
 
-    // Ensure correct shows are displayed after search
     const shows = wrapper.findAll('.show-item-container .list');
     shows.forEach(show => {
       expect(show.text().toLowerCase()).toContain('test show');

@@ -2,13 +2,14 @@
 
 The application is developed using Vue 3 in Vite, enabling users to browse lists of TV shows categorized by their ratings and genres. The data is fetched from the TVmaze API (https://www.tvmaze.com/api). Users can search for specific shows and access detailed information about each show on the details page
 
-## Technologies Used
+## Framework/Libraries Used
 
 - Vue.js
 - TypeScript
 - Bootstrap for styling
 - Pinia for state management
 - Axios for making HTTP requests
+- Vitest for unit testing
 
 
 ## Getting Started
@@ -27,6 +28,12 @@ npm install
 npm run dev
 ```
 This will start the development server and you can view the app in your browser.
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
 
 ## Node.js and npm Versions
 
@@ -61,10 +68,4 @@ The project structure is organized as follows:
 
 ```sh
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
 ```

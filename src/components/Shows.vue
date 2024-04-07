@@ -13,7 +13,7 @@
                         <div class="show-details">
                             <section class="show-details-values">
                                 <div v-if="show.rating.average" class="favourite-section">
-                                    <img src="../assets/rating.png" alt="rating-icon" class="rating-icon"/>
+                                    <img src="../assets/rating.png" alt="rating-icon" class="rating-icon" />
                                     <span class="rating-number">{{ show.rating.average }}</span>
                                     <span class="genere-list">{{ show.genres?.join(" | ") }}</span>
                                 </div>
@@ -126,19 +126,21 @@ export default {
     font-weight: bold;
     color: #FAB006;
 }
-.rating-icon{
-    width:15px;
+
+.rating-icon {
+    width: 15px;
     height: 15px;
     cursor: pointer;
     margin-left: 10px;
     margin-right: 5px;
 }
+
 .genere-list {
     font-size: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 40px;
-    white-space: nowrap; 
+    white-space: nowrap;
     display: inline-block;
     max-width: 120px;
     font-weight: bold;
@@ -152,6 +154,5 @@ export default {
     text-overflow: ellipsis;
     display: inline-block;
 }
-
 </style>
   

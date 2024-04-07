@@ -26,7 +26,6 @@ body {
   background-color: #111;
 }
 
-
 .spinner-container {
   position: absolute;
   top: 40%;

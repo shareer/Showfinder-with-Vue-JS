@@ -1,5 +1,5 @@
 import axios, { AxiosError,  } from "axios";
-import type { AxiosRequestConfig,AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import type { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const customAxios = axios.create({
   baseURL: `https://api.tvmaze.com`,
