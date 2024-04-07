@@ -10,7 +10,7 @@ describe('Home', () => {
   it('renders correctly with loading state', async () => {
     const wrapper = mount(Home);
     expect(wrapper.find('.spinner-border').exists()).toBe(true);
-    expect(wrapper.find('.container').exists()).toBe(true);
+    expect(wrapper.find('.search').exists()).toBe(true);
   });
 
   it('renders search input when not loading', async () => {

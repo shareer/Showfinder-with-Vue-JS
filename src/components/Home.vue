@@ -1,12 +1,12 @@
 <template>
-    <div class="container-fluid p-4">
-        <div class="container col-6">
-            <div class="form-group has-search mb-5 p-2 mt-5" v-show="!isLoading">
+    <div class="container-fluid p-4 mt-5">
+        <div class="search mt-5">
+            <div class="form-group col-6 mb-5 p-2 mt-5 mx-auto" v-show="!isLoading">
                 <input type="text" class="form-control" placeholder="Search Shows..." v-model="searchQuery">
             </div>
         </div>
 
-        <div class="show-item-container">
+        <div class="show-item-container mt-5">
             <template v-for="(genereName, index) in genereList" :key="index">
                 <section v-if="hasFilteredShows(genereName)" class="list" data-testid="list-section">
                     <Shows :tvShowsList="getFilteredShows(genereName)" :genereName="genereName" />
@@ -27,7 +27,7 @@
 </template>
   
 <script lang="ts">
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, onUnmounted } from 'vue';
 import _ from 'lodash';
 import Shows from './Shows.vue';
 import { useShowStore } from '@/stores/ShowStore';
@@ -45,6 +45,7 @@ export default {
         const isLoading = ref<boolean>(true);
         const dataStore = useShowStore();
         const hasSearchMatches = ref<boolean>(false);
+        const isSearching = ref<boolean>(false);
 
         /**
          * Fetches TV show data if not already fetched, then processes the data to extract genres
@@ -103,12 +104,33 @@ export default {
             return filteredShows;
         };
 
+        /**
+         * Function to handle scrolling behavior and adjust the search bar accordingly.
+         * It checks the scroll position and adds/removes the 'sticky' class to the search bar
+         * to make it stick to the top of the page when scrolling down.
+         */
+        const handleScroll = () => {
+            const searchBar = document.querySelector('.search');
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            if (searchBar && !isSearching.value) {
+                if (scrollTop > 50) {
+                    searchBar.classList.add('sticky');
+                } else {
+                    searchBar.classList.remove('sticky');
+                }
+            }
+        };
 
         const debouncedFilterShows = _.debounce(filterShows, 500);
         watch(searchQuery, debouncedFilterShows);
 
         onMounted(() => {
             fetchShowData();
+            window.addEventListener('scroll', handleScroll);
+        });
+
+        onUnmounted(() => {
+            window.removeEventListener('scroll', handleScroll);
         });
 
         return { isLoading, showList, genereList, searchQuery, filteredShowList, hasFilteredShows, getFilteredShows, hasSearchMatches };
@@ -121,6 +143,21 @@ export default {
     max-width: 1800px;
     width: 100%;
     margin: 0 auto;
+}
+.search {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.sticky {
+    top: -50px;
+    position: fixed;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease-in-out;
+    /* background:#111; */
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 1) 80%, rgba(17, 17, 17, 0)); 
 }
 </style>
   
