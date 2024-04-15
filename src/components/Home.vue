@@ -28,6 +28,7 @@
   
 <script lang="ts">
 import { ref, onMounted, watch, onUnmounted } from 'vue';
+// @ts-ignore
 import _ from 'lodash';
 import Shows from './Shows.vue';
 import { useShowStore } from '@/stores/ShowStore';

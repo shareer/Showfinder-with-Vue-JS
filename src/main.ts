@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
+// @ts-ignore
 import bootstrap from 'bootstrap/dist/js/bootstrap.js'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
