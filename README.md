@@ -2,6 +2,10 @@
 
 The application is developed using Vue 3 in Vite, enabling users to browse lists of TV shows categorized by their ratings and genres. The data is fetched from the TVmaze API (https://www.tvmaze.com/api). Users can search for specific shows and access detailed information about each show on the details page
 
+## Project Live URL
+
+https://tv-shows-finder.vercel.app/
+
 ## Framework/Libraries Used
 
 - Vue.js
